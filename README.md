@@ -29,7 +29,7 @@
 ### Clone the repo move the script in C:\Where-You-Want
 
 ```git
-git clone https://github.com/ihatemodels/rdp-telegram-messenger
+git clone https://github.com/zverev-iv/rdp-telegram-messenger
 
 Set-Location -Path .\rdp-telegram-messenger\
 ```
@@ -44,8 +44,8 @@ Move-Item rdp-telegram.ps1 C:\Where-You-Want
 
 ### Open Event Viewer
 
-> GOTO: -> Applications and Services Logs -> Microsoft -> Windows -> TerminalServices-RemoteConnectionManager -> Admin  
-> The last event with a **ID=20521** is the rdp connection  
+> GOTO: -> Applications and Services Logs -> Microsoft -> Windows -> TerminalServices-RemoteConnectionManager -> Operational  
+> The last event with a **ID=1149** is the rdp connection  
 > Right-Click on the event - **Select attach task to this event**
 
 ### Set-Up The Task

@@ -1,16 +1,11 @@
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-$event = Get-WinEvent -FilterHashtable @{Logname='Security';Id=4624} -MaxEvents 1
-$message= ""
-$ip = $event.Properties[18].Value
-$domain = $event.Properties[2].Value
-$user = $event.Properties[5].Value
-$datetime = $event.TimeCreated.ToString("dd.MMM.yyyy HH:mm:ss")
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 #optional
+$event = Get-WinEvent -FilterHashtable @{Logname = 'Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational'; Id = 1149 } -MaxEvents 1
 
-$message = "*RDP LOGIN* `nSystem: $domain\$user `nDate: $datetime `n IPAddres: $ip"
+$message = "RDP LOGIN`nServer: $($event.MachineName) `nFrom: $($event.Properties[2].Value) `nUser: $($event.Properties[1].Value)\\$($event.Properties[0].Value) `nOn: $($event.TimeCreated.ToString("yyyy.MM.dd HH:mm:ss"))"
 
-$botToken = 'ADD UR TOKEN HERE'
-$chatID = 'ADD UR CHAT ID HERE'
+$botToken = 'ADD YOUR BOT TOKEN HERE'
+$chatID = 'ADD YOUR CHAT ID HERE'
 
 $telegramURI = ("https://api.telegram.org/bot" + $botToken + "/sendMessage")
-$telegramJson = ConvertTo-Json -Compress @{chat_id = $chatID; text=$message}
+$telegramJson = ConvertTo-Json -Compress @{chat_id = $chatID; text = $message }
 $telegramResponse = Invoke-RestMethod -Uri $telegramURI -Method Post -ContentType 'application/json;charset=utf-8' -Body $telegramJson
