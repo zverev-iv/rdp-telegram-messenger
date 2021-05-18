@@ -56,4 +56,4 @@ Move-Item rdp-telegram.ps1 C:\Where-You-Want
         Add arguments(optional): **The path to rdp-telegram-messenger**   "C:\rdp-telegram-messenger.ps1"
 - **Save the task!**  
 
-### Happy Messeging
+### Happy Messaging
