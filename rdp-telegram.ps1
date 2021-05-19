@@ -3,8 +3,8 @@ Param (
     [string] $botToken = "ADD YOUR BOT TOKEN HERE",
     [Parameter(Mandatory = $false, Position = 2, HelpMessage = "Chat id")]
     [string] $chatId = "ADD YOUR CHAT ID HERE",
-    [Parameter(Mandatory = $false, Position = 3, HelpMessage = "Enable TLS 1.2 (only if you have connection problems with tls/ssl connection)")]
-    [bool] $enableTls12 = $false
+    [Parameter(Mandatory = $false, Position = 3, HelpMessage = "Enable TLS 1.2 (disable only if you have connection problems with tls/ssl connection)")]
+    [bool] $enableTls12 = $true
 )
 
 if($enableTls12) {
